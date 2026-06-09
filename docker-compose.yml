@@ -65,24 +65,24 @@ services:
 
   # Nginx is serving django static and media files and proxies to django and geonode
   geonode:
-  image: geonode/nginx:1.31.0-latest
-  container_name: nginx4${COMPOSE_PROJECT_NAME}
-  env_file:
-    - .env
-  environment:
-    - RESOLVER=127.0.0.11
-  labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.geonode.rule=Host(`${SITEURL}`)"
-    - "traefik.http.routers.geonode.entrypoints=websecure"
-    - "traefik.http.routers.geonode.tls=true"
-    - "traefik.http.routers.geonode.tls.certresolver=letsencrypt"
-    - "traefik.http.services.geonode.loadbalancer.server.port=80"
-  volumes:
-    - nginx-confd:/etc/nginx
-    - nginx-certificates:/geonode-certificates
-    - statics:/mnt/volumes/statics
-  restart: unless-stopped
+    image: geonode/nginx:1.31.0-latest
+    container_name: nginx4${COMPOSE_PROJECT_NAME}
+    env_file:
+      - .env
+    environment:
+      - RESOLVER=127.0.0.11
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.geonode.rule=Host(`${SITEURL}`)"
+      - "traefik.http.routers.geonode.entrypoints=websecure"
+      - "traefik.http.routers.geonode.tls=true"
+      - "traefik.http.routers.geonode.tls.certresolver=letsencrypt"
+      - "traefik.http.services.geonode.loadbalancer.server.port=80"
+    volumes:
+      - nginx-confd:/etc/nginx
+      - nginx-certificates:/geonode-certificates
+      - statics:/mnt/volumes/statics
+    restart: unless-stopped
 
   # Geoserver backend
   geoserver:
