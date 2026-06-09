@@ -73,7 +73,7 @@ services:
       - RESOLVER=127.0.0.11
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.geonode.rule=Host(`${SITEURL}`)"
+      - "traefik.http.routers.geonode.rule=Host(`geonode.canivete.eu`)"
       - "traefik.http.routers.geonode.entrypoints=websecure"
       - "traefik.http.routers.geonode.tls=true"
       - "traefik.http.routers.geonode.tls.certresolver=letsencrypt"
